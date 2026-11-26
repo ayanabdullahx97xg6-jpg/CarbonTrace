@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1110" />
+  <meta name="description" content="CarbonTrace — an AI-powered environmental decision engine." />
+  <title>CarbonTrace — Environmental Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview" aria-label="CarbonTrace home"><span class="brand-mark">C</span><span>carbon<span class="brand-light">trace</span><small>ENVIRONMENTAL INTELLIGENCE</small></span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#overview" data-page="overview"><span>◫</span> Overview</a>
+        <a class="nav-link" href="#activity" data-page="activity"><span>＋</span> Activity input</a>
+        <a class="nav-link" href="#insights" data-page="insights"><span>⌁</span> Impact insights</a>
+        <a class="nav-link" href="#scenarios" data-page="scenarios"><span>◇</span> Scenario lab</a>
+        <a class="nav-link" href="#strategy" data-page="strategy"><span>✳</span> Reduction plan</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="status-dot"></div><div><b>Local-first workspace</b><small>Your activity data stays in this browser</small></div></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar"><button class="icon-button mobile-menu" id="menuBtn" aria-label="Open menu">☰</button><div class="breadcrumb">Workspace <span>/</span> <b id="crumb">Overview</b></div><div class="topbar-right"><span class="live-pill"><i></i> ESTIMATES ACTIVE</span><button class="avatar" title="CarbonTrace">CT</button></div></header>
+
+      <section class="page active-page" id="page-overview">
+        <div class="hero-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> YOUR ENVIRONMENTAL INTELLIGENCE</div><h1>See the impact<br><em>behind every choice.</em></h1><p class="hero-copy">Turn everyday activity into clear environmental signals. Understand your footprint, test alternatives, and make better-informed decisions.</p></div><div class="hero-orbit" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit-core">CT<span>CO₂e</span></div><div class="orbit-point point-a"></div><div class="orbit-point point-b"></div></div></div>
+        <div class="section-head"><div><div class="eyebrow">01 / CURRENT SNAPSHOT</div><h2>Your footprint at a glance</h2></div><button class="text-button" data-go="activity">+ Add activity <span>↗</span></button></div>
+        <div class="metrics-grid">
+          <article class="metric-card metric-primary"><div class="metric-top"><span>TOTAL ESTIMATED FOOTPRINT</span><span class="metric-icon">◉</span></div><div class="metric-value"><strong id="totalMetric">0.00</strong><small>kg CO₂e</small></div><div class="metric-foot"><span class="metric-caption">Based on your entered activities</span><span class="metric-tag">LIVE ESTIMATE</span></div><div class="metric-glow"></div></article>
+          <article class="metric-card"><div class="metric-top"><span>ACTIVITIES TRACKED</span><span class="metric-icon">⌁</span></div><div class="metric-value"><strong id="activityMetric">0</strong><small>entries</small></div><div class="metric-foot"><span class="metric-caption">Across all categories</span></div></article>
+          <article class="metric-card"><div class="metric-top"><span>TOP IMPACT SOURCE</span><span class="metric-icon">↗</span></div><div class="metric-value"><strong class="metric-word" id="topMetric">—</strong></div><div class="metric-foot"><span class="metric-caption" id="topCaption">Add activity to identify patterns</span></div></article>
+        </div>
+        <div class="content-grid"><article class="panel chart-panel"><div class="panel-head"><div><div class="eyebrow">BREAKDOWN</div><h3>Where impact comes from</h3></div><span class="unit-label">KG CO₂e</span></div><div class="chart-wrap"><div class="donut" id="donut"><div class="donut-center"><b id="donutTotal">0</b><small>KG CO₂e</small></div></div><div class="legend" id="legend"><div class="empty-note">Your category breakdown will appear here.</div></div></div></article>
+        <article class="panel insight-panel"><div class="panel-head"><div><div class="eyebrow">INTELLIGENCE FEED</div><h3>What needs attention?</h3></div><span class="spark-icon">✳</span></div><div id="quickInsights" class="quick-insights"><div class="empty-state"><span>✳</span><b>Your first insight starts here</b><p>Add a few activities to reveal your biggest impact drivers.</p><button class="small-button" data-go="activity">Add activity</button></div></div></article></div>
+        <div class="disclaimer"><span>ⓘ</span> Estimates are directional, not audited measurements. Actual emissions vary by location, supplier, vehicle, energy mix, and lifecycle assumptions.</div>
+      </section>
+
+      <section class="page" id="page-activity"><div class="page-heading"><div class="eyebrow">02 / DATA INPUT</div><h1>Make your activity<br><em>count.</em></h1><p>Enter approximate monthly activity. You can edit or remove entries at any time.</p></div>
+        <div class="activity-layout"><form class="panel activity-form" id="activityForm"><div class="panel-head"><div><div class="eyebrow">NEW ENTRY</div><h3>Track an activity</h3></div><span class="form-step">01 — 03</span></div><label class="field-label" for="category">Activity category</label><select id="category" required><option value="electricity">Electricity</option><option value="transport">Transportation</option><option value="purchase">Purchases</option></select>
+          <div id="dynamicFields"></div><label class="field-label" for="period">Tracking period</label><select id="period"><option value="month">Monthly</option><option value="week">Weekly</option><option value="day">Daily</option></select>
+          <button class="primary-button full-button" type="submit">Add to footprint <span>↗</span></button><p class="form-note">Your entries are saved locally in this browser. No account required.</p></form>
+          <div class="panel entries-panel"><div class="panel-head"><div><div class="eyebrow">YOUR DATA</div><h3>Tracked activities</h3></div><span class="count-chip" id="entryCount">0 ENTRIES</span></div><div id="entriesList" class="entries-list"><div class="empty-note">No activities yet. Add your first entry.</div></div><button class="subtle-button" id="clearData">Clear all activity data</button></div></div>
+      </section>
+
+      <section class="page" id="page-insights"><div class="page-heading"><div class="eyebrow">03 / IMPACT INTELLIGENCE</div><h1>Find the hidden<br><em>drivers.</em></h1><p>See which activities contribute most and ask AI to interpret the pattern.</p></div><div class="panel"><div class="panel-head"><div><div class="eyebrow">IMPACT RANKING</div><h3>Highest estimated contributors</h3></div><span class="unit-label">KG CO₂e</span></div><div id="rankingList" class="ranking-list"><div class="empty-note">Add activities to generate your impact ranking.</div></div></div><div class="ai-panel panel"><div class="ai-badge">✳ AI ANALYSIS</div><div><h3>Ask CarbonTrace Intelligence</h3><p>Get a grounded explanation of your recorded activities, key drivers, and practical opportunities.</p><div class="ai-result" id="aiResult" aria-live="polite">Your analysis will appear here. It uses your calculated estimates as context, not as independently verified measurements.</div><button class="primary-button" id="analyzeBtn">Analyze my footprint <span>↗</span></button><small class="privacy-note">Only the summary needed for analysis is sent to the server-side AI endpoint. Avoid entering personal or sensitive information.</small></div></div></section>
+
+      <section class="page" id="page-scenarios"><div class="page-heading"><div class="eyebrow">04 / SCENARIO LAB</div><h1>What if you<br><em>changed one thing?</em></h1><p>Compare a hypothetical reduction with your current estimated footprint.</p></div><div class="scenario-layout"><div class="panel scenario-controls"><div class="eyebrow">SCENARIO BUILDER</div><h3>Adjust an activity</h3><label class="field-label" for="scenarioCategory">Category</label><select id="scenarioCategory"><option value="electricity">Electricity</option><option value="transport">Transportation</option><option value="purchase">Purchases</option></select><label class="field-label" for="reductionRange">Reduce this category by <b id="reductionLabel">20%</b></label><input type="range" min="0" max="90" step="5" value="20" id="reductionRange"><div class="range-labels"><span>0%</span><span>90%</span></div><p class="form-note">This is a hypothetical comparison, not a prediction or verified saving.</p></div><div class="panel scenario-result"><div class="eyebrow">PROJECTED COMPARISON</div><div class="scenario-numbers"><div><small>Current</small><b id="scenarioCurrent">0.00</b><span>kg CO₂e</span></div><div class="scenario-arrow">→</div><div><small>Scenario</small><b class="green-text" id="scenarioFuture">0.00</b><span>kg CO₂e</span></div></div><div class="saving-line"><span>Estimated difference</span><b id="scenarioSaving">0.00 kg CO₂e</b></div><div class="progress-track"><div id="scenarioProgress"></div></div><p class="form-note" id="scenarioNote">Add activities to test a scenario.</p></div></div></section>
+
+      <section class="page" id="page-strategy"><div class="page-heading"><div class="eyebrow">05 / ACTION PLANNING</div><h1>Small shifts.<br><em>Measurable direction.</em></h1><p>Build a practical reduction strategy based on your own activity profile.</p></div><div class="panel strategy-panel"><div class="panel-head"><div><div class="eyebrow">PERSONALIZED ACTIONS</div><h3>Your next best moves</h3></div><span class="spark-icon">✳</span></div><div id="strategyList" class="strategy-list"><div class="empty-state"><span>✳</span><b>Your plan is waiting for data</b><p>Track electricity, travel, or purchases to get relevant actions.</p><button class="small-button" data-go="activity">Track activity</button></div></div></div></section>
+      <footer class="footer"><span>CARBONTRACE © 2026</span><span>MEASURE · UNDERSTAND · IMPROVE</span><span>ESTIMATES, NOT CERTIFICATION</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
